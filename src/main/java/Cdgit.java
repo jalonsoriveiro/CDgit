@@ -8,11 +8,13 @@ public class Cdgit {
 
 
     public static void main(String[] args) throws IOException {
-            //GitHub github = GitHub.connect();
+            //creamos el objeto GitHUb con las conexion realizada
             GitHub github = new GitHubBuilder().withPassword("jalonsoriveiro", "").build();
+            //Creamos el repositorio
             GHRepository repo = github.createRepository(
-                    "new-repository34434","this is my new repository",
+                    "HelloCD","this is my new repository",
                     "https://github.com/jalonsoriveiro/",true/*public*/);
-            repo.addCollaborators(github.getUser("damiancastelao"));
+           //añadimos un colaborador a nuestro repositorio
+            // repo.addCollaborators(github.getUser("damiancastelao"));
     }
 }
