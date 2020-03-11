@@ -1,7 +1,9 @@
-import org.kohsuke.github.GHRepository;
+import org.eclipse.jgit.api.Git;
 import org.kohsuke.github.GitHub;
 import org.kohsuke.github.GitHubBuilder;
 
+import javax.swing.*;
+import java.io.File;
 import java.io.IOException;
 
 public class Cdgit {
@@ -11,10 +13,16 @@ public class Cdgit {
             //creamos el objeto GitHUb con las conexion realizada
             GitHub github = new GitHubBuilder().withPassword("jalonsoriveiro", "").build();
             //Creamos el repositorio
-            GHRepository repo = github.createRepository(
-                    "HelloCD","this is my new repository",
-                    "https://github.com/jalonsoriveiro/",true/*public*/);
-           //añadimos un colaborador a nuestro repositorio
-            // repo.addCollaborators(github.getUser("damiancastelao"));
+        String githubSourceUrl = Integer.parseInt(JOptionPane.showInputDialog('Dame tu repositorio'));
+        String branchName = Integer.parseInt(JOptionPane.showInputDialog('rama'));
+        String destinationFile = Integer.parseInt(JOptionPane.showInputDialog('url directorio destino'));
+        int credentialsProvider = Integer.parseInt(JOptionPane.showInputDialog("credenciales"));
+        Git.cloneRepository().setURI(githubSourceUrl)
+                .setBranch(branchName)
+                .setDirectory(new File(destinationFile))
+                .setCredentialsProvider(credentialsProvider)
+                .call();
+
+
     }
 }
